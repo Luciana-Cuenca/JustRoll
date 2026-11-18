@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 function Footer() {
@@ -21,7 +20,7 @@ function Footer() {
           <Link to="/">Inicio</Link>
           <Link to="/composiciones">Composiciones</Link>
           <Link to="/tutoriales">Tutoriales</Link>
-          <Link to="/guias">Guías</Link>
+          <Link to="/noticias">Noticias</Link>
         </div>
 
         <div className="footer-about">
