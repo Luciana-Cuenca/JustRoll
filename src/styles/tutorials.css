@@ -17,8 +17,8 @@
   --tut-blue-mid:     var(--blue-400,   #65D9FF);
   --tut-blue-light:   var(--blue-200,   #B7EDFF);
   --tut-blue-dark:    var(--blue-700,   #1767A8);
-  --tut-purple:       #1767A8;
-  --tut-purple-light: #B7EDFF;
+  --tut-purple:       #9B6FD8;
+  --tut-purple-light: #DDD0FF;
   --tut-yellow:       var(--yellow,     #FFE16B);
   --tut-ink:          var(--ink,        #24242A);
   --tut-cream:        var(--cream,      #FFF0D2);
@@ -197,7 +197,7 @@
   line-height: 1.65;
 }
 
-/* Badges de nivel — */
+/* Badges de nivel — igual que hero-eyebrow pero sin emoji */
 .tut-hero-badges {
   display: flex;
   flex-wrap: wrap;
@@ -423,38 +423,13 @@
   padding-block: 65px;
 }
 
-/* Encabezado de cada nivel — banda de color completa */
+/* Encabezado de cada nivel */
 .tut-level-header {
   display: flex;
   align-items: center;
   gap: 18px;
   flex-wrap: wrap;
   margin-bottom: 28px;
-  padding: 18px 24px;
-  border: 3px solid var(--tut-ink);
-  border-radius: 10px;
-  box-shadow: var(--tut-shadow-sm);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Fondo de color según nivel */
-.tut-level-header--orange { background: var(--tut-orange-pale); }
-.tut-level-header--blue   { background: var(--tut-blue-light); }
-.tut-level-header--purple { background: var(--tut-blue-light); }
-
-/* Decoración de fondo */
-.tut-level-header::before {
-  content: "";
-  position: absolute;
-  right: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 120px;
-  height: 120px;
-  border: 4px dashed rgba(36,36,42,0.1);
-  border-radius: 50%;
-  pointer-events: none;
 }
 
 .tut-level-badge {
@@ -588,11 +563,6 @@
   outline-offset: 4px;
 }
 
-/* Borde izquierdo de color según nivel */
-.tut-card--orange { border-left: 7px solid var(--tut-orange); }
-.tut-card--blue   { border-left: 7px solid var(--tut-blue); }
-.tut-card--purple { border-left: 7px solid var(--tut-purple); }
-
 /* Sticker de número — igual que learning-card-number */
 .tut-card-number {
   position: absolute;
@@ -614,36 +584,78 @@
   transform: rotate(-5deg);
 }
 
+/* Arte / imagen */
+.tut-card-art {
+  position: relative;
+  height: 145px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-/* Decoraciones geométricas de fondo */
-.tut-card-art-deco {
+.tut-card--orange .tut-card-art { background: var(--tut-orange-pale); }
+.tut-card--blue   .tut-card-art { background: var(--tut-blue-light); }
+.tut-card--purple .tut-card-art { background: var(--tut-purple-light); }
+
+.tut-card-art-img {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
 }
 
-.tut-card-art-circle {
+/* Placeholder CSS — mismo estilo que composition-art */
+.tut-card-art-placeholder {
   position: absolute;
-  width: 110px;
-  height: 110px;
-  border: 3px dashed rgba(36,36,42,0.18);
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tut-ph-circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 3px dashed var(--tut-ink);
   border-radius: 50%;
-  left: -20px;
-  top: 50%;
-  transform: translateY(-50%);
+  opacity: 0.25;
 }
 
-.tut-card-art-star {
-  position: absolute;
-  left: 15px;
-  top: 10px;
+/* Forma central — igual que mini-unit del Inicio */
+.tut-ph-shape {
+  position: relative;
+  z-index: 1;
+  width: 60px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--tut-ink);
+  border-radius: 12px 12px 5px 5px;
+  box-shadow: 4px 4px 0 var(--tut-ink);
+  font-family: var(--font-display, sans-serif);
   font-size: 20px;
   font-weight: 900;
-  color: rgba(36,36,42,0.25);
 }
 
+.tut-ph-shape--orange { background: var(--tut-orange-light); }
+.tut-ph-shape--blue   { background: var(--tut-blue-mid); }
+.tut-ph-shape--purple { background: var(--tut-purple-light); }
+
+.tut-ph-star {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--tut-ink);
+  opacity: 0.3;
+}
 
 /* Cuerpo de la tarjeta */
 .tut-card-body {
@@ -763,7 +775,10 @@
   to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-
+/* Borde superior de color según nivel */
+.tut-panel--orange { border-top: 7px solid var(--tut-orange); }
+.tut-panel--blue   { border-top: 7px solid var(--tut-blue-mid); }
+.tut-panel--purple { border-top: 7px solid var(--tut-purple); }
 
 /* ── Botón cerrar — igual que detail-close ─────────────────── */
 .tut-panel-close {
@@ -1010,17 +1025,13 @@
    7. BLOQUES DE CONTENIDO
    ============================================================ */
 
-/* Título secundario — con acento lateral */
+/* Título secundario */
 .tut-block-heading {
-  margin: 10px 0 0;
-  padding: 10px 16px;
-  padding-bottom: 10px;
-  border-left: 5px solid var(--tut-orange);
+  margin: 6px 0 0;
+  padding-bottom: 8px;
   border-bottom: 2px dashed rgba(36, 36, 42, 0.18);
-  background: rgba(255,255,255,0.5);
-  border-radius: 0 6px 6px 0;
   font-family: var(--font-display, sans-serif);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 900;
   letter-spacing: -0.5px;
   scroll-margin-top: 24px;
@@ -1638,249 +1649,44 @@
   }
 }
 
+@media (max-width: 680px) {
+  .tut-hero { padding: 0; }
 
-
-/* ==========================================
-   JUST ROLL - TARJETAS DE TUTORIALES
-========================================== */
-
-.tut-card {
-  --card-accent: #ff9d45;
-
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  min-width: 0;
-  background: #fffaf0;
-  border: 3px solid #242424;
-  border-radius: 12px;
-  box-shadow: 6px 6px 0 #242424;
-  cursor: pointer;
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.tut-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 7px 9px 0 #242424;
-}
-
-.tut-card:focus-visible {
-  outline: 3px solid #268acb;
-  outline-offset: 4px;
-}
-
-/* Colores por nivel */
-
-.tut-card--orange {
-  --card-accent: #ff9d45;
-}
-
-.tut-card--blue {
-  --card-accent: #65d9ff;
-}
-
-.tut-card--purple {
-  --card-accent: #c6a0ff;
-}
-
-/* ==========================================
-   ENCABEZADO
-========================================== */
-
-.tut-card-top {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 18px;
-  height: 100px;
-  padding: 16px 22px;
-  background: var(--card-accent);
-  border-bottom: 3px solid #242424;
-}
-
-/* Símbolo del tutorial */
-
-.tut-card-symbol {
-  position: relative;
-  inset: auto;
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  width: 65px;
-  height: 60px;
-  margin: 0;
-  padding: 5px;
-  background: #fffaf0;
-  color: #242424;
-  border: 3px solid #242424;
-  border-radius: 12px;
-  box-shadow: 4px 4px 0 #242424;
-  font-size: 20px;
-  font-weight: 900;
-  transform: rotate(-5deg);
-  transition: transform .2s ease;
-}
-
-.tut-card:hover .tut-card-symbol {
-  transform: rotate(0deg) scale(1.05);
-}
-
-/* Información del encabezado */
-
-.tut-card-top-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  min-width: 0;
-}
-
-.tut-card-index {
-  position: static;
-  display: block;
-  color: #242424;
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: .5px;
-}
-
-.tut-card-time {
-  position: static;
-  display: block;
-  margin: 0;
-  color: #242424;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-/* ==========================================
-   CUERPO
-========================================== */
-
-.tut-card-body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 18px;
-}
-
-/* Etiqueta de nivel */
-
-.tut-card .tut-pill {
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  padding: 5px 12px;
-  background: var(--card-accent);
-  color: #242424;
-  border: 2px solid #242424;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 900;
-}
-
-/* Título */
-
-.tut-card-title {
-  margin: 0;
-  color: #242424;
-  font-size: 20px;
-  font-weight: 900;
-  line-height: 1.25;
-}
-
-/* Descripción */
-
-.tut-card-desc {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  margin: 0;
-  color: #55515b;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.6;
-}
-
-/* ==========================================
-   BOTÓN
-========================================== */
-
-.tut-card-cta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  align-self: stretch;
-  gap: 10px;
-  margin-top: auto;
-  padding: 12px 14px;
-  background: #242424;
-  color: #ffffff;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: .5px;
-}
-
-.tut-card-cta span:last-child {
-  font-size: 19px;
-  transition: transform .2s ease;
-}
-
-.tut-card:hover .tut-card-cta span:last-child {
-  transform: translate(3px, -3px);
-}
-
-/* ==========================================
-   LIMPIEZA DE DECORACIONES ANTERIORES
-========================================== */
-
-.tut-card::before,
-.tut-card::after,
-.tut-card-top::before,
-.tut-card-top::after {
-  content: none;
-}
-
-/* ==========================================
-   RESPONSIVE
-========================================== */
-
-@media (max-width: 600px) {
-  .tut-card-top {
-    height: 85px;
-    gap: 14px;
-    padding: 12px 16px;
+  .tut-hero-inner {
+    width: 92%;
+    padding-block: 28px 36px;
   }
 
-  .tut-card-symbol {
-    width: 55px;
-    height: 52px;
-    font-size: 17px;
+  .tut-hero-title {
+    font-size: clamp(44px, 14vw, 70px);
+    letter-spacing: -2px;
   }
 
-  .tut-card-body {
-    padding: 15px;
+  .tut-grid { grid-template-columns: 1fr; }
+
+  .tut-panel { max-height: 95vh; }
+
+  .tut-panel-header { padding: 20px 18px 16px; }
+
+  .tut-panel-body {
+    padding: 20px 18px 30px;
+    gap: 18px;
   }
 
-  .tut-card-title {
-    font-size: 18px;
+  .tut-panel-nav {
+    grid-template-columns: 1fr;
   }
 
-  .tut-card-desc {
-    font-size: 12px;
+  .tut-panel-nav-btn--next {
+    flex-direction: row;
+    text-align: left;
   }
+
+  .tut-block-heading { font-size: 19px; }
+  .tut-quiz          { padding: 16px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .tut-card,
-  .tut-card-symbol,
-  .tut-card-cta span {
-    transition: none;
-  }
+@media (max-width: 420px) {
+  .tut-hero-badges   { flex-direction: column; align-items: flex-start; }
+  .tut-level-header  { flex-direction: column; align-items: flex-start; }
 }

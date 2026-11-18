@@ -134,7 +134,7 @@ function TutorialDetail({
           )}
 
           {/* Cuerpo */}
-          <div className={`tut-panel-body tut-panel-body--${tutorial.color}`}>
+          <div className="tut-panel-body">
             {hasContent ? (
               <>
                 {tutorial.content.map((block, i) => (

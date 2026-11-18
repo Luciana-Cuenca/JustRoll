@@ -1,66 +1,48 @@
+// src/components/tutorials/TutorialQuiz.jsx
+// Sin emojis. Letras A/B/C como insignias, retroalimentación textual.
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-function TutorialQuiz({ questions, tutorialId }) {
-  const [answers, setAnswers] = useState({});
+function TutorialQuiz({ questions }) {
+  const [answers,   setAnswers]   = useState({});
   const [submitted, setSubmitted] = useState({});
 
-  // Reiniciar respuestas cuando cambia la guía
-  useEffect(() => {
-    setAnswers({});
-    setSubmitted({});
-  }, [tutorialId, questions]);
-
-  if (!questions?.length) return null;
+  if (!questions || questions.length === 0) return null;
 
   const handleSelect = (qi, oi) => {
     if (submitted[qi]) return;
-
-    setAnswers((prev) => ({
-      ...prev,
-      [qi]: oi,
-    }));
+    setAnswers((prev) => ({ ...prev, [qi]: oi }));
   };
 
   const handleSubmit = (qi) => {
     if (answers[qi] === undefined) return;
-
-    setSubmitted((prev) => ({
-      ...prev,
-      [qi]: true,
-    }));
+    setSubmitted((prev) => ({ ...prev, [qi]: true }));
   };
 
   return (
     <section className="tut-quiz" aria-label="Mini quiz">
+
+      {/* Cabecera — mismo estilo que learning-header-sticker */}
       <div className="tut-quiz-header">
-        <div
-          className="tut-quiz-header-sticker"
-          aria-hidden="true"
-        >
+        <div className="tut-quiz-header-sticker" aria-hidden="true">
           <span>?</span>
           <small>QUIZ</small>
         </div>
-
         <h3>Comprueba lo aprendido</h3>
       </div>
 
       <ol className="tut-quiz-list">
         {questions.map((q, qi) => {
-          const isSubmitted = Boolean(submitted[qi]);
-          const selected = answers[qi];
-          const isCorrect = selected === q.answer;
+          const isSubmitted = submitted[qi];
+          const selected    = answers[qi];
+          const isCorrect   = selected === q.answer;
 
           return (
             <li key={qi} className="tut-quiz-item">
               <p className="tut-quiz-question">
-                <span
-                  className="tut-quiz-qnum"
-                  aria-hidden="true"
-                >
+                <span className="tut-quiz-qnum" aria-hidden="true">
                   {qi + 1}
                 </span>
-
                 {q.question}
               </p>
 
@@ -69,52 +51,47 @@ function TutorialQuiz({ questions, tutorialId }) {
                 role="group"
                 aria-label={`Opciones pregunta ${qi + 1}`}
               >
-                {q.options.map((option, oi) => {
-                  let className = "tut-quiz-option";
-
+                {q.options.map((opt, oi) => {
+                  let cls = "tut-quiz-option";
                   if (isSubmitted) {
-                    if (oi === q.answer) {
-                      className += " tut-quiz-option--correct";
-                    } else if (oi === selected) {
-                      className += " tut-quiz-option--wrong";
-                    }
+                    if (oi === q.answer) cls += " tut-quiz-option--correct";
+                    else if (oi === selected) cls += " tut-quiz-option--wrong";
                   } else if (selected === oi) {
-                    className += " tut-quiz-option--selected";
+                    cls += " tut-quiz-option--selected";
                   }
 
                   return (
                     <button
                       key={oi}
                       type="button"
-                      className={className}
+                      className={cls}
                       onClick={() => handleSelect(qi, oi)}
                       disabled={isSubmitted}
                       aria-pressed={selected === oi}
                     >
-                      <span
-                        className="tut-quiz-opt-letter"
-                        aria-hidden="true"
-                      >
+                      {/* Insignia de letra en lugar de círculo de color */}
+                      <span className="tut-quiz-opt-letter" aria-hidden="true">
                         {String.fromCharCode(65 + oi)}
                       </span>
-
-                      {option}
+                      {opt}
                     </button>
                   );
                 })}
               </div>
 
+              {/* Botón confirmar */}
               {!isSubmitted && (
                 <button
                   type="button"
                   className="tut-quiz-confirm"
                   onClick={() => handleSubmit(qi)}
-                  disabled={selected === undefined}
+                  disabled={answers[qi] === undefined}
                 >
                   Confirmar respuesta
                 </button>
               )}
 
+              {/* Retroalimentación */}
               {isSubmitted && (
                 <div
                   className={`tut-quiz-feedback ${
@@ -122,19 +99,14 @@ function TutorialQuiz({ questions, tutorialId }) {
                       ? "tut-quiz-feedback--ok"
                       : "tut-quiz-feedback--fail"
                   }`}
-                  role="status"
+                  role="alert"
                 >
-                  <span
-                    className="tut-quiz-result-badge"
-                    aria-hidden="true"
-                  >
+                  {/* Sticker de resultado — texto, no emoji */}
+                  <span className="tut-quiz-result-badge" aria-hidden="true">
                     {isCorrect ? "OK" : "NO"}
                   </span>
-
                   <span>
-                    {isCorrect
-                      ? "Correcto. "
-                      : "Respuesta incorrecta. "}
+                    {isCorrect ? "Correcto. " : "No es exactamente. "}
                     {q.explanation}
                   </span>
                 </div>

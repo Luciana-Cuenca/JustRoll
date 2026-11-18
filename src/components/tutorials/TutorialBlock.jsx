@@ -1,6 +1,6 @@
 // src/components/tutorials/TutorialBlock.jsx
 // Renderiza cada tipo de bloque. Sin emojis.
-// Nuevo tipo: "glossary" — lista de { term, definition, example? }
+// Nuevo tipo: "glossary" — lista de { term, definition }
 
 function TutorialBlock({ block }) {
   switch (block.type) {
@@ -46,7 +46,7 @@ function TutorialBlock({ block }) {
       return (
         <div className="tut-block-keytip">
           <span className="tut-block-badge tut-block-badge--key">
-            ✦ DATO CLAVE
+            ! DATO CLAVE
           </span>
           <p>{block.text}</p>
         </div>
@@ -57,7 +57,7 @@ function TutorialBlock({ block }) {
       return (
         <div className="tut-block-mistake">
           <span className="tut-block-badge tut-block-badge--mistake">
-            ✗ ERROR FRECUENTE
+            X ERROR COMUN
           </span>
           <p>{block.text}</p>
         </div>
