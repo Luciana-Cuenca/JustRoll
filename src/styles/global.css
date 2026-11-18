@@ -18,10 +18,10 @@
   --blue-400: #65D9FF;
   --blue-200: #B7EDFF;
 
-  /* COLORES COMPLEMENTARIOS */
-  --purple: #C6A6F5;
+  /* COLORES COMPLEMENTARIOS (ARMONÍA AZUL Y NARANJA) */
+  --purple: #2489D8; /* Subtono azul eléctrico */
   --yellow: #FFE16B;
-  --pink: #FF9EAA;
+  --pink: #FFA15D;   /* Subtono naranja atardecer */
   --green: #A8DB9B;
 
   /* NEUTROS */
