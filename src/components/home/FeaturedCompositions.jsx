@@ -19,7 +19,7 @@ function FeaturedCompositions() {
             </p>
           </div>
 
-          <Link to="/composiciones" className="btn btn-blue featured-all">
+          <Link to="/composiciones" className="btn btn-orange featured-all">
             VER TODAS <span>↗</span>
           </Link>
         </div>
@@ -39,11 +39,22 @@ function FeaturedCompositions() {
                 </span>
               </div>
 
+              {/* Retrato enmarcado idéntico a la página de Composiciones (nítido y sin pixelar) */}
               <div className="composition-art">
-                <div className="composition-art-circle"></div>
-                <div className="composition-art-symbol">
-                  {composition.icon}
+                <div className="composition-art-frame">
+                  {composition.image && (
+                    <img
+                      src={composition.image}
+                      alt={composition.name}
+                      className="composition-art-portrait"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                  )}
                 </div>
+
                 <span className="composition-art-number">
                   0{composition.id}
                 </span>
@@ -61,8 +72,8 @@ function FeaturedCompositions() {
 
                 <div className="composition-info">
                   <div>
-                    <span className="info-label">COSTE</span>
-                    <strong>{composition.cost}</strong>
+                    <span className="info-label">MODO</span>
+                    <strong>{composition.gameMode || composition.cost}</strong>
                   </div>
 
                   <div>
@@ -74,7 +85,7 @@ function FeaturedCompositions() {
                 </div>
 
                 <Link
-                  to="/composiciones"
+                  to={`/composiciones?id=${composition.id}`}
                   className="composition-card-link"
                 >
                   VER COMPOSICIÓN <span>↗</span>

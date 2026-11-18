@@ -51,7 +51,7 @@ function QuickFeatures() {
             </div>
           </Link>
 
-          <Link to="/guias" className="feature-card feature-purple">
+          <Link to="/guias" className="feature-card feature-cyan">
             <div className="feature-number">03</div>
             <div className="feature-illustration strategy-illustration">
               <div className="strategy-board">
