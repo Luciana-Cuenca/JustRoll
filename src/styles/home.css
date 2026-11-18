@@ -2393,3 +2393,178 @@
     padding: 17px;
   }
 }
+
+
+/* ========================================================
+   NS-* — Tarjetas de Sets para NewsSection en Home (FASE 4D)
+   ======================================================== */
+
+.ns-sets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.ns-set-card {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: var(--shadow-hard);
+  overflow: hidden;
+  background: var(--cream-light);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.ns-set-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 8px 0 var(--ink);
+}
+
+.ns-set-visual {
+  position: relative;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 3px solid var(--ink);
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.ns-set-visual--orange { background: var(--orange-300); }
+.ns-set-visual--blue   { background: var(--blue-200); }
+
+.ns-set-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.ns-set-ph-num {
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 900;
+  color: var(--ink);
+  opacity: 0.2;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ns-set-status {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 12px;
+  border: 2.5px solid var(--ink);
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  box-shadow: 2px 2px 0 var(--ink);
+  z-index: 2;
+}
+
+.ns-set-status--orange { background: var(--cream); color: var(--ink); }
+.ns-set-status--blue   { background: var(--blue-700); color: var(--cream); }
+
+.ns-set-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+}
+
+.ns-set-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue-700);
+}
+
+.ns-set-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.ns-set-theme {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue-500);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.ns-set-summary {
+  font-size: 13.5px;
+  color: var(--ink);
+  line-height: 1.55;
+  opacity: 0.85;
+  flex: 1;
+  margin: 0;
+}
+
+.ns-set-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 2px dashed rgba(0,0,0,0.15);
+}
+
+.ns-set-date {
+  font-size: 12px;
+  color: var(--ink);
+}
+
+.ns-set-date strong {
+  font-weight: 800;
+}
+
+.ns-set-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2.5px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: var(--shadow-small);
+  transition: transform 0.1s, box-shadow 0.1s;
+  white-space: nowrap;
+}
+
+.ns-set-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 5px 0 var(--ink);
+}
+
+.ns-set-btn--orange { background: var(--orange-300); color: var(--ink); }
+.ns-set-btn--blue   { background: var(--blue-200);   color: var(--ink); }
+
+@media (max-width: 700px) {
+  .ns-sets-grid {
+    grid-template-columns: 1fr;
+  }
+}
