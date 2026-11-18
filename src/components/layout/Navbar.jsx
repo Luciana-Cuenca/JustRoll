@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../../styles/navbar.css";
@@ -19,7 +18,6 @@ function Navbar() {
           onClick={closeMenu}
         >
           <span className="brand-logo">
-            {/* Reemplaza este JR por tu imagen cuando tengas el logo */}
             <img
               src="/images/logo.png"
               alt="JUST ROLL"
@@ -64,8 +62,8 @@ function Navbar() {
             Tutoriales
           </NavLink>
 
-          <NavLink to="/guias" onClick={closeMenu}>
-            Guías
+          <NavLink to="/noticias" onClick={closeMenu}>
+            Noticias
           </NavLink>
         </nav>
 
